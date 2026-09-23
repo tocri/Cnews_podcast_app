@@ -1,6 +1,8 @@
 # Podcasts CNEWS · Perso
 
-Application personnelle Kotlin pour écouter les podcasts CNEWS sur téléphone et Android Auto. Aucun compte, aucune publication Google Play, aucun téléchargement d’épisode sur disque. Application indépendante, non officielle.
+Application personnelle Kotlin pour écouter les podcasts CNEWS sur téléphone et Android Auto. L'application n'est pas diffusée sur le store de Google. Cnews n'est pas associé à ce projet.
+
+## Installation
 
 ## Utilisation
 
