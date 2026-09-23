@@ -1,14 +1,36 @@
-# Podcasts CNEWS · Perso
+# 🎙️ CNEWS Podcast pour Android & Android Auto
 
-Application personnelle Kotlin pour écouter les podcasts CNEWS sur téléphone et Android Auto. L'application n'est pas diffusée sur le store de Google. Cnews n'est pas associé à ce projet.
+Cette application personnelle, développée en **Kotlin**, permet d’écouter simplement les podcasts de **CNEWS** depuis un téléphone Android et **Android Auto**.
+
+## 💡 Pourquoi cette application ?
+
+Le projet est né d’une frustration toute simple : je voulais pouvoir écouter les podcasts de la chaîne en voiture, mais il n’existait pas d’application Android Auto répondant à ce besoin.
+
+Pour lancer un podcast, je devais prendre mon téléphone, ouvrir l’application, sélectionner une thématique, rechercher le podcast puis démarrer la lecture. Autant de manipulations que je trouvais peu pratiques et surtout **inadaptées à une utilisation en voiture**.
+
+J’ai donc décidé de créer ma propre application avec un objectif simple :
+
+> **Accéder rapidement aux podcasts et les écouter depuis Android Auto avec un minimum d’interactions.**
+
+Grâce aux possibilités offertes aujourd’hui par **l’IA générative et ChatGPT**, j’ai pu transformer ce besoin personnel en une véritable application Android, alors que développer seul un tel projet aurait été beaucoup plus difficile pour moi il y a encore quelques années.
+
+## 📱 Distribution
+
+L’application est proposée **gratuitement** et n’est pas distribuée sur le Google Play Store.
+
+## ⚠️ Avertissement
+
+> **Projet indépendant et non officiel.**
+>
+> CNEWS n’est ni associé, ni affilié, ni impliqué dans le développement de cette application. Les marques, noms et contenus associés à CNEWS restent la propriété de leurs détenteurs respectifs.
 
 ## Installation sur android
 
 1. Télécharger l'archive zip [Release 0.40]https://github.com/tocri/Cnews_podcast_app/releases/tag/0.40
 2. Décompresser l'archive afin d'obtenir le .apk
-3. Activer les outils de développement sur votre téléphone en allant dans Paramètres > cliquer n fois sur ... pour activer les outils de développement.
-4. Ouvrir les outils de développement et sélectionner Installation de sources inconnues.
-5. Chercher le .apk et cliquer dessus. Valider l'avertissement. L'application est maintenant installée
+4. Activer les outils de développement sur votre téléphone en allant dans Paramètres > cliquer n fois sur ... pour activer les outils de développement.
+5. Ouvrir les outils de développement et sélectionner Installation de sources inconnues.
+6. Chercher le .apk et cliquer dessus. Valider l'avertissement. L'application est maintenant installée
 
 ## Installation sur android auto
 
@@ -18,27 +40,33 @@ Application personnelle Kotlin pour écouter les podcasts CNEWS sur téléphone 
 
 ## Utilisation
 
-Version 0.4.0 : sur téléphone, les boutons **↑ Début** et **↓ Fin**, toujours accessibles au-dessus des épisodes, sautent aux deux extrémités. La position dans la liste est conservée pendant les rafraîchissements.
+V 0.40 
 
-Dans Android Auto, chaque émission commence par **↑ Début · Plus récents**, **↓ Fin · Plus anciens** et **Toutes les périodes**, suivis des huit épisodes récents. « Plus anciens » présente les huit derniers de la sélection, du plus ancien au plus récent : l’extrémité de la liste est donc immédiatement accessible. Les périodes permettent de retrouver tous les autres épisodes par groupes de huit. La touche Retour d’Android Auto revient aux raccourcis de l’émission. La sélection reste limitée aux 60 épisodes récents disponibles dans le flux ; il ne s’agit pas de l’archive intégrale.
+L'application n'a pas pour vocation a être jolie. Son objectif est d'être la plus simple possible et la plus efficace.
+Parmi les fonctionnalités :
 
-Ces raccourcis sont des dossiers média natifs, pas des commandes de défilement ajoutées à l’autoradio. Les alertes et restrictions de conduite restent contrôlées par Android Auto. Les sauvegardes de progression ne rechargent plus sa liste en cours de consultation ; les métadonnées actualisées apparaissent à la prochaine ouverture du dossier.
+* le podcast se coupe automatiquement lorsqu'une application interrompt votre podcast. Lorsque l'interruption est terminée, la lecture se poursuit.
+* fonctionnalité "Resume" ainsi si vous déconnectez Android Auto, vous pourrez reprendre le podcast là où vous vous étiez arrêté. Le resume est gardée en mémoire persistente.
+* Des bouton fin et bas vont vous permettre d'accéder en 1 geste au bas ou haut de la liste
+* La racine du catalogue affiche également la lecture en cours, cela évite d'ouvrir la thématique et de sélectionner le podcast
+* Sur l'application du téléphone, il est possible de marquer un podcast comme terminé en laissant son doigt dessus.
+  
 
-Version 0.3.0 : durée totale dans la liste, pochette de l’épisode (ou de son émission), mémorisation de la position et reprise sur téléphone/Android Auto. Le téléphone affiche un bouton « Reprendre » à côté de chaque épisode commencé, ainsi qu’une barre déplaçable entre ▶ et Ⅱ. Les boutons −15 s et +30 s sont conservés. Les commandes s’activent après sélection ; le déplacement nécessite que le lecteur connaisse la durée et puisse rechercher dans le média.
+Images de l'apps
 
-La position est sauvegardée toutes les cinq secondes et lors des pauses/changements de position ou d’épisode. Une interruption brutale peut donc faire perdre les dernières secondes. Au retour, toucher l’épisode ou « Reprendre » repart à la position mémorisée ; la racine du catalogue propose aussi la dernière écoute inachevée. La reconnexion ne lance pas de son d’elle-même : l’utilisateur ou Android Auto commande la lecture. Dans la voiture, l’interface est celle d’Android Auto, avec le statut « en cours » et la reprise au clic ; elle n’affiche pas nécessairement le même bouton que sur téléphone.
+ 
 
-Les épisodes arrivés à la fin sont mémorisés comme écoutés et grisés sur le téléphone. Un appui long ouvre les actions « Marquer comme écouté/non écouté » et « Recommencer au début ». Une simple ouverture, une pause ou une erreur réseau ne marque pas un épisode comme terminé. Atteindre la fin après une avance manuelle compte comme une fin de lecture. Les épisodes terminés repartent du début si on les sélectionne de nouveau.
 
-La durée RSS est affichée avant lecture et la durée réelle fournie par le lecteur est ensuite retenue. L’insertion publicitaire Acast peut modifier la durée et le contenu entre deux sessions ; une position chronologique ne garantit donc pas exactement la même phrase si la publicité a changé. Une image absente ou inaccessible conserve l’icône de secours. La photo est transmise aux métadonnées système pour Android Auto ; le recadrage appartient à l’autoradio.
 
-Android Auto reçoit le statut standard « entièrement lu » et la mention « Écouté » ; la couleur exacte et le dessin de l’indicateur dépendent de l’autoradio. L’historique est local au téléphone, conservé lors des mises à jour, et supprimé si les données de l’application sont effacées ou l’application désinstallée. Les écoutes antérieures à la version 0.2.0 ne peuvent pas être reconstituées automatiquement.
 
-Ouvrir l’application → choisir une émission → toucher un épisode. La lecture commence immédiatement. Android Auto fournit sa propre interface média : émissions, épisodes, puis commandes de lecture. Le téléphone affiche aussi les commandes pause/reprise, −15 s et +30 s.
 
-Les listes sont récupérées par RSS Acast, limitées aux 60 épisodes les plus récents et mises en cache en mémoire pendant cinq minutes. Les métadonnées des épisodes sélectionnés et leur position sont conservées localement pour la reprise, même s’ils quittent cette liste récente (sous réserve que l’audio soit encore accessible chez Acast). Aucun audio n’est enregistré sur disque. Un nouvel accès recharge une liste périmée. Une liste à laquelle un client est abonné est également actualisée en mémoire toutes les cinq minutes tant que le service fonctionne ; dans Android Auto, rouvrir le dossier affiche ces données sans interrompre le défilement en cours.
 
-La liste des émissions est une sélection vérifiée dans `app/src/main/assets/shows.json`. Les **nouveaux épisodes** apparaissent sans mise à jour de l’application. L’ajout automatique d’une émission entièrement nouvelle n’est pas inclus : aucun annuaire RSS global CNEWS stable n’a été établi. Une telle émission doit être ajoutée au registre puis l’APK recompilé. Aucun scraping CNEWS n’est exécuté sur le téléphone.
+
+
+
+
+
+
 
 ## Développer avec Visual Studio Code
 
