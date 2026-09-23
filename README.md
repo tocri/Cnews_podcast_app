@@ -26,35 +26,26 @@ Les listes sont récupérées par RSS Acast, limitées aux 60 épisodes les plus
 
 La liste des émissions est une sélection vérifiée dans `app/src/main/assets/shows.json`. Les **nouveaux épisodes** apparaissent sans mise à jour de l’application. L’ajout automatique d’une émission entièrement nouvelle n’est pas inclus : aucun annuaire RSS global CNEWS stable n’a été établi. Une telle émission doit être ajoutée au registre puis l’APK recompilé. Aucun scraping CNEWS n’est exécuté sur le téléphone.
 
-## Construire l’APK
+## Développer avec Visual Studio Code
 
-1. Installer Android Studio et ouvrir ce dossier comme projet.
-2. Installer le SDK Android 35 et les Build Tools 35.0.0 dans le gestionnaire de SDK. Utiliser Java 17 pour Gradle.
-3. Laisser Android Studio créer `local.properties` avec le chemin de votre SDK ; ne pas reprendre un chemin provenant d’un autre ordinateur.
-4. Dans le terminal du projet sous Windows :
+Le [guide Visual Studio Code](docs/VISUAL-STUDIO-CODE.md) explique la préparation du SDK sans Android Studio, le clonage du dépôt, les fichiers à modifier, la compilation et l’installation de l’APK.
 
-```powershell
-.\gradlew.bat assembleDebug testDebugUnitTest lintDebug
-```
+Une fois Java 17 et le SDK Android 35 configurés, ouvrir le dossier du projet dans VS Code et appuyer sur **Ctrl+Maj+B** pour lancer **Générer l’APK**. La tâche **Vérifier le projet** lance les tests locaux et l’analyse Android. Les tâches sont incluses dans `.vscode/tasks.json` ; aucune extension n’est indispensable à la compilation.
 
-Sous macOS/Linux : `sh ./gradlew assembleDebug testDebugUnitTest lintDebug`.
+Le fichier produit est `app/build/outputs/apk/debug/app-debug.apk`. Le projet utilise Gradle 8.13, Android Gradle Plugin 8.10.1, Kotlin 2.1.21 et Media3 1.8.0. Ces versions sont épinglées pour reproduire la compilation.
 
-Le dépôt exclut `local.properties`, les caches, les APK et les clés de signature. Pour mettre à jour une installation existante sans perdre son historique, conserver en lieu sûr la même clé de signature sur la machine de compilation. Une compilation sur une autre machine peut créer une nouvelle clé de développement, incompatible avec la mise à jour de l’installation précédente.
+## Installer l’APK sur un téléphone, sans ADB
 
-L’APK est créé dans `app/build/outputs/apk/debug/app-debug.apk`. La configuration utilise Gradle 8.13, Android Gradle Plugin 8.10.1, Kotlin 2.1.21 et Media3 1.8.0. Les versions sont épinglées pour reproduire cette compilation ; elles ne prétendent pas être les dernières disponibles.
+L’application exige Android 8 minimum ; Android Auto a ses propres exigences de compatibilité. Pour utiliser l’application, il n’est pas nécessaire de compiler le projet : récupérer l’APK fourni.
 
-## Installer sur un téléphone
+1. Transférer le fichier `.apk` sur le téléphone, par exemple par transfert de fichiers USB ou via un stockage partagé.
+2. Sur le Samsung, ouvrir **Mes fichiers**, puis le dossier contenant l’APK (souvent **Téléchargements**).
+3. Toucher l’APK et autoriser l’installation depuis cette application si Android le demande.
+4. Choisir **Installer** ou **Mettre à jour**, puis ouvrir **Podcasts CNEWS · Perso**.
 
-L’application exige Android 8 minimum ; Android Auto a ses propres exigences de version et de compatibilité matérielle.
+Aucun débogage USB/Wi-Fi ni ADB n’est nécessaire. Pour une mise à jour, conserver l’application existante : un APK signé avec la même clé préserve l’historique. Ne pas la désinstaller si Android signale une signature incompatible ; utiliser un APK signé avec la clé d’origine. Les clés de signature restent privées et sont exclues du dépôt.
 
-Transférer l’APK sur le téléphone et l’ouvrir depuis le gestionnaire de fichiers. Autoriser ce gestionnaire à installer l’application si Android le demande. Autre méthode : activer le débogage USB, brancher le téléphone, accepter la connexion sur son écran puis lancer :
-
-```powershell
-adb devices
-adb install -r app/build/outputs/apk/debug/app-debug.apk
-```
-
-Ouvrir une fois « Podcasts CNEWS · Perso » et vérifier un épisode avec Internet. Les médias sont lus en streaming ; le forfait de données et les éventuelles publicités du flux Acast s’appliquent. Une liste déjà chargée peut rester visible si le réseau tombe, mais cela ne rend pas l’audio disponible hors connexion.
+Vérifier un épisode avec Internet. Les médias sont lus en streaming ; le forfait de données et les éventuelles publicités du flux Acast s’appliquent. Une liste déjà chargée peut rester visible sans réseau, mais l’audio n’est pas disponible hors connexion.
 
 ## Faire apparaître l’application dans Android Auto
 
