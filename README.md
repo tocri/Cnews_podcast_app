@@ -2,7 +2,19 @@
 
 Application personnelle Kotlin pour écouter les podcasts CNEWS sur téléphone et Android Auto. L'application n'est pas diffusée sur le store de Google. Cnews n'est pas associé à ce projet.
 
-## Installation
+## Installation sur android
+
+1. Télécharger l'archive zip [Release 0.40]https://github.com/tocri/Cnews_podcast_app/releases/tag/0.40
+2. Décompresser l'archive afin d'obtenir le .apk
+3. Activer les outils de développement sur votre téléphone en allant dans Paramètres > cliquer n fois sur ... pour activer les outils de développement.
+4. Ouvrir les outils de développement et sélectionner Installation de sources inconnues.
+5. Chercher le .apk et cliquer dessus. Valider l'avertissement. L'application est maintenant installée
+
+## Installation sur android auto
+
+1. Accéder aux paramètres d'android auto
+2. Cliquer n fois sur ... pour activer les outils de developpement
+3. 
 
 ## Utilisation
 
