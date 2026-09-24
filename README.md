@@ -26,7 +26,7 @@ L’application est proposée **gratuitement** et n’est pas distribuée sur le
 
 ## Installation sur android
 
-1. Télécharger l'archive zip [Release 0.40]https://github.com/tocri/Cnews_podcast_app/releases/tag/0.40
+1. Télécharger l'archive zip [Release 0.4.1](https://github.com/tocri/Cnews_podcast_app/releases/tag/0.41)
 2. Décompresser l'archive afin d'obtenir le .apk
 4. Activer les outils de développement sur votre téléphone en allant dans Paramètres > cliquer n fois sur ... pour activer les outils de développement.
 5. Ouvrir les outils de développement et sélectionner Installation de sources inconnues.
