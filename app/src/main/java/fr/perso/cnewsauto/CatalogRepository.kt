@@ -112,7 +112,7 @@ class CatalogRepository(context: Context) {
                 if (completed) 1.0 else (position.toDouble() / duration).coerceIn(0.0, 1.0))
         }
         return MediaItem.Builder().setMediaId(episode.id).setUri(episode.audio).setMediaMetadata(
-            MediaMetadata.Builder().setTitle(episode.title).setSubtitle(subtitle).setArtist(show.title).setExtras(extras)
+            MediaMetadata.Builder().setTitle(episode.title).setSubtitle(subtitle).setArtist(if (completed) "🟢 Lu" else show.title).setExtras(extras)
                 .setDurationMs(duration.takeIf { it > 0 }).setArtworkUri(episode.artwork?.let(android.net.Uri::parse))
                 .setIsBrowsable(false).setIsPlayable(true).setMediaType(MediaMetadata.MEDIA_TYPE_PODCAST_EPISODE).build()).build()
     }

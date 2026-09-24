@@ -40,6 +40,8 @@ L’application est proposée **gratuitement** et n’est pas distribuée sur le
 
 ## Utilisation
 
+Version 0.4.1 : dans Android Auto, la ligne du nom d’émission est remplacée par **🟢 Lu** pour les épisodes terminés. Les autres épisodes conservent le nom de leur émission. Le symbole vert appartient au texte, pas à l’indicateur natif d’Android Auto ; son rendu dépend de l’hôte. Après un marquage sur le téléphone, quitter puis rouvrir le dossier automobile pour actualiser la liste. Le titre, la pochette, la navigation et la présentation de la liste téléphone sont conservés.
+
 V 0.40 
 
 L'application n'a pas pour vocation a être jolie. Son objectif est d'être la plus simple possible et la plus efficace.
