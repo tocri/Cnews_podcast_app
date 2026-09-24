@@ -16,7 +16,7 @@ Grâce aux possibilités offertes aujourd’hui par **l’IA générative et Cha
 
 ## 📱 Distribution
 
-L’application est proposée **gratuitement** et n’est pas distribuée sur le Google Play Store.
+L’application est proposée **gratuitement** sous licence *GPL3** et n’est pas distribuée sur le Google Play Store.
 
 ## ⚠️ Avertissement
 
