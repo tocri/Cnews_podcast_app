@@ -1,100 +1,154 @@
 # 🎙️ CNEWS Podcast pour Android & Android Auto
 
-Cette application personnelle, développée en **Kotlin**, permet d’écouter simplement les podcasts de **CNEWS** depuis un téléphone Android et **Android Auto**.
+Cette application personnelle, développée en **Kotlin**, permet d'écouter simplement les podcasts de **CNEWS** depuis un téléphone Android et **Android Auto**.
 
 ## 💡 Pourquoi cette application ?
 
-Le projet est né d’une frustration toute simple : je voulais pouvoir écouter les podcasts de la chaîne en voiture, mais il n’existait pas d’application Android Auto répondant à ce besoin.
+Le projet est né d'une frustration toute simple : je voulais pouvoir écouter les podcasts de la chaîne en voiture, mais il n'existait pas d'application Android Auto répondant à ce besoin.
 
-Pour lancer un podcast, je devais prendre mon téléphone, ouvrir l’application, sélectionner une thématique, rechercher le podcast puis démarrer la lecture. Autant de manipulations que je trouvais peu pratiques et surtout **inadaptées à une utilisation en voiture**.
+Pour lancer un podcast, je devais prendre mon téléphone, ouvrir l'application, sélectionner une thématique, rechercher le podcast puis démarrer la lecture. Autant de manipulations que je trouvais peu pratiques et surtout **inadaptées à une utilisation en voiture**.
 
-J’ai donc décidé de créer ma propre application avec un objectif simple :
+J'ai donc décidé de créer ma propre application avec un objectif simple :
 
-> **Accéder rapidement aux podcasts et les écouter depuis Android Auto avec un minimum d’interactions.**
+> **Accéder rapidement aux podcasts et les écouter depuis Android Auto avec un minimum d'interactions.**
 
-Grâce aux possibilités offertes aujourd’hui par **l’IA générative et ChatGPT**, j’ai pu transformer ce besoin personnel en une véritable application Android, alors que développer seul un tel projet aurait été beaucoup plus difficile pour moi il y a encore quelques années.
+Grâce aux possibilités offertes aujourd'hui par **l'IA générative et ChatGPT**, j'ai pu transformer ce besoin personnel en une véritable application Android, alors que développer seul un tel projet aurait été beaucoup plus difficile pour moi il y a encore quelques années.
 
 ## 📱 Distribution
 
-L’application est proposée **gratuitement** sous licence *GPL3** et n’est pas distribuée sur le Google Play Store.
+L'application est proposée **gratuitement** sous licence **GNU GPL v3.0 (GPL-3.0)** et n'est pas distribuée sur le Google Play Store.
+
+➡️ **[Télécharger la dernière version](https://github.com/tocri/Cnews_podcast_app/releases/latest)**
 
 ## ⚠️ Avertissement
 
 > **Projet indépendant et non officiel.**
 >
-> CNEWS n’est ni associé, ni affilié, ni impliqué dans le développement de cette application. Les marques, noms et contenus associés à CNEWS restent la propriété de leurs détenteurs respectifs.
+> CNEWS n'est ni associé, ni affilié, ni impliqué dans le développement de cette application.
+> Les marques, noms et contenus associés à CNEWS restent la propriété de leurs détenteurs respectifs.
+
+---
+
+# 📥 Installation
 
 ## Installation sur Android
 
-1. Télécharger l'archive zip [Release 0.4.1](https://github.com/tocri/Cnews_podcast_app/releases/tag/0.41)
-2. Décompresser l'archive afin d'obtenir le .apk
-3. Copier l'apk dans votre android
-4. Ouvrir l'apk à partir de votre téléphone.
+1. Télécharger le fichier **APK** depuis la [dernière version disponible](https://github.com/tocri/Cnews_podcast_app/releases/latest).
+2. Ouvrir le fichier `.apk` depuis le téléphone.
+3. Android peut demander d'autoriser l'installation d'applications provenant de cette source.
+4. Autoriser temporairement cette source si nécessaire.
+5. Confirmer l'installation.
 
-Un message d'avertissement va apparaître. Il suffit de continuer
+> ℹ️ Il n'est pas nécessaire d'activer les options pour développeurs d'Android pour installer l'APK.
 
-## Installation sur Android auto
+## 🚗 Activation dans Android Auto
 
-1. Sur votre téléphone, aller dans Paramètres et chercher Android Auto (🔎).
-2. Tout en bas, appuyer 10 fois sur version pour activer les paramètres développeur.
-3. Ouvrir le menu ⋮ en haut à droite d'Android Auto.
-4. Aller dans Paramètres pour développeurs.
-5. Activer Sources inconnues.
-6. Reconnecter Android Auto à la voiture
+L'application étant installée en dehors du Google Play Store, une configuration supplémentaire d'Android Auto peut être nécessaire.
 
-## Fonctionnalités
+1. Sur le téléphone, ouvrir **Paramètres** et rechercher **Android Auto**.
+2. Ouvrir les paramètres d'Android Auto.
+3. Descendre jusqu'aux informations de version.
+4. Appuyer plusieurs fois sur **Version** jusqu'à l'activation du mode développeur d'Android Auto.
+5. Ouvrir le menu **⋮** en haut à droite.
+6. Sélectionner **Paramètres pour développeurs**.
+7. Activer **Sources inconnues**.
+8. Reconnecter le téléphone au véhicule.
 
-Il existe 2 versions de l'application. L'application sur le téléphone qui est assez rudimentaire du point de vue graphique et l'application Android Auto.
+> ⚠️ Le mode développeur d'Android Auto est différent des options pour développeurs générales d'Android.
 
-**Fonctionnalités communes :**
+---
 
-* Les podcast sont listés par thématique
-* Possible d'atteindre le haut ou le bas de la liste des podcast en 1 clic
-* Fonction de resume. Le podcast reprend là où il s'est arrêté même après une déconnexion d'android auto
-* Le podcast se met en pause lorsqu'une autre application prend la parole (type logiciel GPS) et reprend quand c'est terminé
+# ✨ Fonctionnalités
 
-**Sur le téléphone :**
+L'application propose deux interfaces :
 
-* Possible de marquer un podcast comme lu en laissant le doigt sur le podcast - important car cela permet de synchroniser le statut sur Android Auto
+- une **application Android** volontairement simple ;
+- une interface spécialement conçue pour **Android Auto**.
 
+## Fonctionnalités communes
 
+- 🎙️ Classement des podcasts par thématique.
+- ⏫ Accès rapide au début ou à la fin d'une liste de podcasts.
+- ▶️ **Reprise automatique de la lecture** : un podcast reprend là où il a été interrompu, même après une déconnexion d'Android Auto.
+- 🗺️ Gestion du **focus audio** : la lecture se met automatiquement en pause lorsqu'une autre application, comme un GPS, prend la parole, puis reprend ensuite.
+- 🔄 Synchronisation de l'état des podcasts entre l'application Android et Android Auto.
 
-## Images
+## Sur le téléphone
 
-## 📸 Captures d'écran
+- Possibilité de marquer manuellement un podcast comme **écouté** en effectuant un appui long sur celui-ci.
+- Le statut est ensuite synchronisé avec Android Auto.
 
-|  **Application mobile**| **Interface Android Auto** |
+---
+
+# 📸 Captures d'écran
+
+| **Application mobile** | **Interface Android Auto** |
 |:---:|:---:|
-| <img src="docs/podcast_cnews_ecran android.jpg" width="300" alt="Application Android"> <br> <img src="docs/podcast_cnews_ecoute.jpg" width="300" alt="Application Android"> | <img src="docs/podcast_cnews_statut.jpg" width="300" alt="Application Android"> <br> <img src="docs/podcast_cnews_defilement.jpg" width="300" alt="Application Android"> <br> <img src="docs/podcast_cnews_thematiques.jpg" width="300" alt="Application Android"> <br> <img src="docs/podcast_cnews_lecture.jpg" width="300" alt="Application Android"> <br> <img src="docs/podcast_cnews_statut_non_ecoute.jpg" width="300" alt="Application Android">|
+| <img src="docs/podcast_cnews_ecran android.jpg" width="300" alt="Application Android"><br><br><img src="docs/podcast_cnews_ecoute.jpg" width="300" alt="Lecture sur Android"> | <img src="docs/podcast_cnews_statut.jpg" width="300" alt="Android Auto"><br><br><img src="docs/podcast_cnews_defilement.jpg" width="300" alt="Navigation Android Auto"><br><br><img src="docs/podcast_cnews_thematiques.jpg" width="300" alt="Thématiques Android Auto"><br><br><img src="docs/podcast_cnews_lecture.jpg" width="300" alt="Lecture Android Auto"><br><br><img src="docs/podcast_cnews_statut_non_ecoute.jpg" width="300" alt="Statut non écouté Android Auto"> |
 
+---
 
+# 🛠️ Développer avec Visual Studio Code
 
-## Développer avec Visual Studio Code
+Le [guide Visual Studio Code](docs/VISUAL-STUDIO-CODE.md) explique la préparation du SDK sans Android Studio, le clonage du dépôt, les fichiers à modifier, la compilation et l'installation de l'APK.
 
-Le [guide Visual Studio Code](docs/VISUAL-STUDIO-CODE.md) explique la préparation du SDK sans Android Studio, le clonage du dépôt, les fichiers à modifier, la compilation et l’installation de l’APK.
+Une fois **Java 17** et le **SDK Android 35** configurés, ouvrir le dossier du projet dans VS Code et appuyer sur **Ctrl+Maj+B** pour lancer **Générer l'APK**.
 
-Une fois Java 17 et le SDK Android 35 configurés, ouvrir le dossier du projet dans VS Code et appuyer sur **Ctrl+Maj+B** pour lancer **Générer l’APK**. La tâche **Vérifier le projet** lance les tests locaux et l’analyse Android. Les tâches sont incluses dans `.vscode/tasks.json` ; aucune extension n’est indispensable à la compilation.
+La tâche **Vérifier le projet** lance les tests locaux et l'analyse Android.
 
-Le fichier produit est `app/build/outputs/apk/debug/app-debug.apk`. Le projet utilise Gradle 8.13, Android Gradle Plugin 8.10.1, Kotlin 2.1.21 et Media3 1.8.0. Ces versions sont épinglées pour reproduire la compilation.
+Les tâches sont incluses dans `.vscode/tasks.json` ; aucune extension n'est indispensable à la compilation.
 
+L'APK généré se trouve dans :
 
-Pour tester au bureau avec un téléphone Android et le simulateur d’autoradio officiel : [Desktop Head Unit](https://developer.android.com/training/cars/testing/dhu). Il ne s’agit pas d’une application Android Automotive OS à installer directement dans un véhicule.
+`app/build/outputs/apk/debug/app-debug.apk`
 
+Le projet utilise :
 
-## Structure
+- Gradle 8.13
+- Android Gradle Plugin 8.10.1
+- Kotlin 2.1.21
+- Media3 1.8.0
+
+Ces versions sont épinglées afin de garantir une compilation reproductible.
+
+## 🚘 Tester Android Auto sans véhicule
+
+Pour tester l'application avec un téléphone Android et le simulateur d'autoradio officiel :
+
+[Desktop Head Unit](https://developer.android.com/training/cars/testing/dhu)
+
+> Cette application est destinée à **Android Auto**. Il ne s'agit pas d'une application **Android Automotive OS** installée directement dans le système du véhicule.
+
+---
+
+# 🗂️ Structure du projet
 
 ```text
 app/src/main/
-  AndroidManifest.xml              Permissions, service média et déclaration Android Auto
-  assets/shows.json                Registre des flux Acast vérifiés
+  AndroidManifest.xml
+      Permissions, service média et déclaration Android Auto
+
+  assets/shows.json
+      Registre des flux Acast vérifiés
+
   java/fr/perso/cnewsauto/
-    RssParser.kt                   Titres, dates, GUID et enclosures HTTPS
-    CatalogRepository.kt           Réseau hors thread principal, cache mémoire, identifiants
-    PlaybackService.kt             MediaLibrarySession, ExoPlayer, focus et navigation Auto
-    MainActivity.kt                Interface minimale du téléphone avec MediaBrowser
-  res/xml/automotive_app_desc.xml   Capacité média Android Auto
-app/src/test/                      Tests RSS hors appareil
-docs/SOURCES.md                    Analyse et registre des sources vérifiées
-```
+    RssParser.kt
+        Titres, dates, GUID et enclosures HTTPS
 
+    CatalogRepository.kt
+        Réseau hors thread principal, cache mémoire et identifiants
 
+    PlaybackService.kt
+        MediaLibrarySession, ExoPlayer, focus audio et navigation Android Auto
+
+    MainActivity.kt
+        Interface du téléphone avec MediaBrowser
+
+  res/xml/automotive_app_desc.xml
+      Déclaration de la capacité média Android Auto
+
+app/src/test/
+  Tests RSS hors appareil
+
+docs/SOURCES.md
+  Analyse et registre des sources vérifiées
