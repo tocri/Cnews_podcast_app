@@ -24,34 +24,41 @@ L’application est proposée **gratuitement** et n’est pas distribuée sur le
 >
 > CNEWS n’est ni associé, ni affilié, ni impliqué dans le développement de cette application. Les marques, noms et contenus associés à CNEWS restent la propriété de leurs détenteurs respectifs.
 
-## Installation sur android
+## Installation sur Android
 
 1. Télécharger l'archive zip [Release 0.4.1](https://github.com/tocri/Cnews_podcast_app/releases/tag/0.41)
 2. Décompresser l'archive afin d'obtenir le .apk
-4. Activer les outils de développement sur votre téléphone en allant dans Paramètres > cliquer n fois sur ... pour activer les outils de développement.
-5. Ouvrir les outils de développement et sélectionner Installation de sources inconnues.
-6. Chercher le .apk et cliquer dessus. Valider l'avertissement. L'application est maintenant installée
+3. Copier l'apk dans votre android
+4. Ouvrir l'apk à partir de votre téléphone.
 
-## Installation sur android auto
+Un message d'avertissement va apparaître. Il suffit de continuer
 
-1. Accéder aux paramètres d'android auto
-2. Cliquer n fois sur ... pour activer les outils de developpement
-3. 
+## Installation sur Android auto
 
-## Utilisation
+1. Sur votre téléphone, aller dans Paramètres et chercher Android Auto (🔎).
+2. Tout en bas, appuyer 10 fois sur version pour activer les paramètres développeur.
+3. Ouvrir le menu ⋮ en haut à droite d'Android Auto.
+4. Aller dans Paramètres pour développeurs.
+5. Activer Sources inconnues.
+6. Reconnecter Android Auto à la voiture
 
-Version 0.4.1 : dans Android Auto, la ligne du nom d’émission est remplacée par **🟢 Lu** pour les épisodes terminés. Les autres épisodes conservent le nom de leur émission. Le symbole vert appartient au texte, pas à l’indicateur natif d’Android Auto ; son rendu dépend de l’hôte. Après un marquage sur le téléphone, quitter puis rouvrir le dossier automobile pour actualiser la liste. Le titre, la pochette, la navigation et la présentation de la liste téléphone sont conservés.
+## Fonctionnalités
 
-V 0.40 
+Il existe 2 versions de l'application. L'application sur le téléphone qui est assez rudimentaire du point de vue graphique et l'application Android Auto.
 
-L'application n'a pas pour vocation a être jolie. Son objectif est d'être la plus simple possible et la plus efficace.
-Parmi les fonctionnalités :
+Fonctionnalités communes :
 
-* le podcast se coupe automatiquement lorsqu'une application interrompt votre podcast. Lorsque l'interruption est terminée, la lecture se poursuit.
-* fonctionnalité "Resume" ainsi si vous déconnectez Android Auto, vous pourrez reprendre le podcast là où vous vous étiez arrêté. Le resume est gardée en mémoire persistente.
-* Des bouton fin et bas vont vous permettre d'accéder en 1 geste au bas ou haut de la liste
-* La racine du catalogue affiche également la lecture en cours, cela évite d'ouvrir la thématique et de sélectionner le podcast
-* Sur l'application du téléphone, il est possible de marquer un podcast comme terminé en laissant son doigt dessus.
+* Les podcast sont listés par thématique
+* Possible d'atteindre le haut ou le bas de la liste des podcast en 1 clic
+* Fonction de resume. Le podcast reprend là où il s'est arrêté même après une déconnexion d'android auto
+* Le podcast se met en pause lorsqu'une autre application prend la parole (type logiciel GPS) et reprend quand c'est terminé
+
+Sur le téléphone :
+
+* Possible de marquer un podcast comme lu en laissant le doigt sur le podcast - important car cela permet de synchroniser le statut sur Android Auto
+
+
+
   
 
 Images de l'apps
