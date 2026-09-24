@@ -59,7 +59,9 @@ Sur le téléphone :
 
 
 
-  
+  ##Images
+
+<img src="docs/podcast_cnews_statut.jpg" width="300" alt="Écran d'accueil CNews Podcast">
 
 Images de l'apps
 
