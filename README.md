@@ -18,7 +18,7 @@ Grâce aux possibilités offertes aujourd'hui par **l'IA générative et ChatGPT
 
 L'application est proposée **gratuitement** sous licence **GNU GPL v3.0 (GPL-3.0)** et n'est pas distribuée sur le Google Play Store.
 
-➡️ **[Télécharger la dernière version](https://github.com/tocri/Cnews_podcast_app/releases/latest)**
+➡️ **[Télécharger la dernière version](https://github.com/tocri/Cnews_podcast_app/releases/latest)** (CNEWSAUTO.apk)
 
 ## ⚠️ Avertissement
 
