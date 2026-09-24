@@ -65,7 +65,7 @@ Sur le téléphone :
 
 | Application Android | Android Auto |
 |:---:|:---:|
-| <img src="docs/podcast_cnews_ecran android.jpg" width="300" alt="Application Android"> | <img src="docs/podcast_cnews_statut.jpg" width="300" alt="Application Android"> <br> <img src="docs/podcast_cnews_defilement.jpg" width="300" alt="Application Android"> |
+| <img src="docs/podcast_cnews_ecran android.jpg" width="300" alt="Application Android"> | <img src="docs/podcast_cnews_statut.jpg" width="300" alt="Application Android"> <br> <img src="docs/podcast_cnews_defilement.jpg" width="300" alt="Application Android"> <br> <img src="docs/podcast_cnews_thematiques.jpg" width="300" alt="Application Android">|
 
 
 |  |  |
