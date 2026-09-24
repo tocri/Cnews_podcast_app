@@ -59,11 +59,19 @@ Sur le téléphone :
 
 
 
-  ##Images
+## Images
 
-<img src="docs/podcast_cnews_statut.jpg" width="300" alt="Écran d'accueil CNews Podcast">
+## 📸 Captures d'écran
 
-Images de l'apps
+| Application Android | Android Auto |
+|:---:|:---:|
+| <img src="docs/podcast_cnews_statut.jpg" width="300" alt="Application Android"> | <img src="docs/android_auto.jpg" width="500" alt="Android Auto"> |
+| **Application mobile** | **Interface Android Auto** |
+
+
+
+
+
 
  
 
