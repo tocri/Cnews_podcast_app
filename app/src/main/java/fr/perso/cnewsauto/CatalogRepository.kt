@@ -46,7 +46,9 @@ class CatalogRepository(context: Context) {
             folder("$show~recent", "↑ Début · Plus récents"),
             folder("$show~oldest", "↓ Fin · Plus anciens"),
             folder("$show~periods", "Toutes les périodes")) else emptyList()
-        return shortcuts + EpisodeNavigation.indices(episodes.size, mode).map { media(episodes[it]) }
+        val selected = if (mode.isEmpty()) episodes.filter { history.position(it.id) > 0 }.take(8)
+            else EpisodeNavigation.indices(episodes.size, mode).map { episodes[it] }
+        return shortcuts + selected.map(::media)
     }
     fun navigationFolder(id: String): MediaItem? {
         if (!id.contains('~') || shows.none { it.id == EpisodeNavigation.showId(id) }) return null
