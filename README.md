@@ -1,6 +1,6 @@
 # 🎙️ CNEWS Podcast pour Android & Android Auto
 
-Version **0.4.2** : repère **🔵 En cours** et tri ancien/récent. Consulter [les nouveautés et le parcours de tri](docs/VERSION-0.4.2.md).
+Version **0.4.3** : retrouve les épisodes **🔵 En cours** directement sous « Toutes les périodes » pour reprendre ton écoute. Le tri ancien/récent et le repère **🟢 Lu** restent disponibles.
 
 
 Cette application personnelle, développée en **Kotlin**, permet d'écouter simplement les podcasts de **CNEWS** depuis un téléphone Android et **Android Auto**.
