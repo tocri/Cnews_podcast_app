@@ -45,11 +45,14 @@ class DeviceChecksTest {
             assertTrue(start.drop(3).size <= 8)
             val recent = children("$show~recent")
             assertEquals(start.drop(3).map { it.mediaId }, recent.map { it.mediaId })
-            val periods = children("$show~periods")
+            assertEquals(listOf("$show~periods:desc", "$show~periods:asc"), children("$show~periods").map { it.mediaId })
+            val periods = children("$show~periods:desc")
             val all = periods.flatMap { children(it.mediaId!!) }
             assertEquals(all.size, all.map { it.mediaId }.distinct().size)
             assertEquals(all.take(8).map { it.mediaId }, recent.map { it.mediaId })
             assertEquals(all.takeLast(8).reversed().map { it.mediaId }, children("$show~oldest").map { it.mediaId })
+            val ascending = children("$show~periods:asc").flatMap { children(it.mediaId!!) }
+            assertEquals(all.reversed().map { it.mediaId }, ascending.map { it.mediaId })
         } finally { instrumentation.runOnMainSync { browser.disconnect() } }
     }
 

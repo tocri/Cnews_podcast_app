@@ -6,7 +6,9 @@ object EpisodeNavigation {
     fun showId(parent: String) = parent.substringBefore('~')
     fun mode(parent: String) = parent.substringAfter('~', "")
     fun pageCount(count: Int) = (count + PAGE_SIZE - 1) / PAGE_SIZE
-    fun indices(count: Int, mode: String): List<Int> = when (mode) {
+    fun indices(count: Int, mode: String): List<Int> = when {
+        mode.endsWith(":asc") -> indices(count, mode.removeSuffix(":asc")).map { count - 1 - it }
+        else -> when (mode) {
         "", "recent" -> (0 until minOf(count, PAGE_SIZE)).toList()
         "oldest" -> (count - 1 downTo maxOf(0, count - PAGE_SIZE)).toList()
         else -> {
@@ -15,5 +17,6 @@ object EpisodeNavigation {
             val start = page * PAGE_SIZE
             (start until minOf(count, start + PAGE_SIZE)).toList()
         }
+    }
     }
 }

@@ -33,10 +33,14 @@ class CatalogRepository(context: Context) {
         val episodes = episodes(show)
         if (phone && parent == show) return episodes.map(::media)
         val mode = EpisodeNavigation.mode(parent)
-        if (mode == "periods") return (0 until EpisodeNavigation.pageCount(episodes.size)).map { page ->
-            val indices = EpisodeNavigation.indices(episodes.size, "page:$page")
+        if (mode == "periods") return listOf(
+            folder("$show~periods:desc", "Du plus récent au plus ancien"),
+            folder("$show~periods:asc", "Du plus ancien au plus récent"))
+        if (mode == "periods:desc" || mode == "periods:asc") return (0 until EpisodeNavigation.pageCount(episodes.size)).map { page ->
+            val pageMode = "page:$page" + if (mode.endsWith(":asc")) ":asc" else ""
+            val indices = EpisodeNavigation.indices(episodes.size, pageMode)
             fun date(index: Int) = SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE).format(Date(episodes[index].date))
-            folder("$show~page:$page", "${date(indices.first())} → ${date(indices.last())}")
+            folder("$show~$pageMode", "${date(indices.first())} → ${date(indices.last())}")
         }
         val shortcuts = if (mode.isEmpty()) listOf(
             folder("$show~recent", "↑ Début · Plus récents"),
@@ -51,7 +55,9 @@ class CatalogRepository(context: Context) {
             mode == "recent" -> "Plus récents"
             mode == "oldest" -> "Plus anciens"
             mode == "periods" -> "Toutes les périodes"
-            mode.startsWith("page:") && mode.removePrefix("page:").toIntOrNull() in 0..7 -> "Épisodes par période"
+            mode == "periods:desc" -> "Du plus récent au plus ancien"
+            mode == "periods:asc" -> "Du plus ancien au plus récent"
+            mode.startsWith("page:") && mode.removeSuffix(":asc").removePrefix("page:").toIntOrNull() in 0..7 -> "Épisodes par période"
             else -> return null
         }
         return folder(id, title)
@@ -112,7 +118,8 @@ class CatalogRepository(context: Context) {
                 if (completed) 1.0 else (position.toDouble() / duration).coerceIn(0.0, 1.0))
         }
         return MediaItem.Builder().setMediaId(episode.id).setUri(episode.audio).setMediaMetadata(
-            MediaMetadata.Builder().setTitle(episode.title).setSubtitle(subtitle).setArtist(if (completed) "🟢 Lu" else show.title).setExtras(extras)
+            MediaMetadata.Builder().setTitle(episode.title).setSubtitle(subtitle).setArtist(
+                if (completed) "🟢 Lu" else if (position > 0) "🔵 En cours" else show.title).setExtras(extras)
                 .setDurationMs(duration.takeIf { it > 0 }).setArtworkUri(episode.artwork?.let(android.net.Uri::parse))
                 .setIsBrowsable(false).setIsPlayable(true).setMediaType(MediaMetadata.MEDIA_TYPE_PODCAST_EPISODE).build()).build()
     }

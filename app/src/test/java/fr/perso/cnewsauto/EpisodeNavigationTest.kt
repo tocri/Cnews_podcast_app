@@ -21,6 +21,14 @@ class EpisodeNavigationTest {
         assertEquals("frontieres", EpisodeNavigation.showId("frontieres~page:3"))
         assertEquals("page:3", EpisodeNavigation.mode("frontieres~page:3"))
     }
+    @Test fun ascendingPeriodsReverseTheWholeSelectionWithoutOmissions() {
+        for (count in listOf(0, 1, 7, 8, 9, 59, 60)) {
+            val ascending = (0 until EpisodeNavigation.pageCount(count)).flatMap { EpisodeNavigation.indices(count, "page:$it:asc") }
+            assertEquals((0 until count).reversed().toList(), ascending)
+            assertEquals(count, ascending.distinct().size)
+        }
+        assertThrows(IllegalArgumentException::class.java) { EpisodeNavigation.indices(60, "page:8:asc") }
+    }
     @Test fun invalidPagesAreRejected() {
         for (mode in listOf("page:-1", "page:8", "page:2147483647", "invalid")) {
             assertThrows(IllegalArgumentException::class.java) { EpisodeNavigation.indices(60, mode) }

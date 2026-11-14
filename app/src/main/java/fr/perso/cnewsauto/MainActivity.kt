@@ -35,6 +35,7 @@ class MainActivity : Activity() {
     private lateinit var back: Button
     private lateinit var forward: Button
     private lateinit var jumps: LinearLayout
+    private var oldestFirst = false
     private data class Anchor(val id: String?, val index: Int, val top: Int)
     private val anchors = mutableMapOf<String, Anchor>()
     private fun rememberScroll() {
@@ -57,6 +58,7 @@ class MainActivity : Activity() {
     override fun onCreate(state: Bundle?) {
         super.onCreate(state)
         history = ListeningHistory(this)
+        oldestFirst = getSharedPreferences("display", MODE_PRIVATE).getBoolean("oldest_first", false)
         parent = state?.getString("parent") ?: "root"
         if (state?.containsKey("scroll_index") == true) anchors[parent] = Anchor(state.getString("scroll_id"), state.getInt("scroll_index"), state.getInt("scroll_top"))
         val layout = LinearLayout(this).apply { orientation = LinearLayout.VERTICAL; setBackgroundColor(Color.rgb(18,22,30)) }
@@ -73,6 +75,7 @@ class MainActivity : Activity() {
             visibility = View.GONE
             addView(button("↑ Début") { if (rows.isNotEmpty()) list.setSelection(0) }, LinearLayout.LayoutParams(0, dp(48), 1f))
             addView(button("↓ Fin") { if (rows.isNotEmpty()) list.setSelection(rows.lastIndex) }, LinearLayout.LayoutParams(0, dp(48), 1f))
+            addView(button("Trier") { chooseOrder() }, LinearLayout.LayoutParams(0, dp(48), 1f))
         }
         layout.addView(jumps)
         adapter = EpisodeAdapter()
@@ -146,7 +149,7 @@ class MainActivity : Activity() {
         browser?.unsubscribe(parent)
         parent = id
         rows = emptyList(); adapter.notifyDataSetChanged()
-        heading.text = if (id == "root") "Émissions CNEWS" else "Épisodes récents"
+        updateHeading()
         jumps.visibility = if (id == "root") View.GONE else View.VISIBLE
         status.text = "Chargement…"
         browser?.subscribe(id, null)
@@ -157,6 +160,25 @@ class MainActivity : Activity() {
             setMediaItem(MediaItem.Builder().setMediaId(item.mediaId).build(), if (restart) 0L else C.TIME_UNSET)
             prepare(); play()
         }
+    }
+    private fun updateHeading() {
+        heading.text = if (parent == "root") "Émissions CNEWS" else if (oldestFirst) "Épisodes · anciens d’abord" else "Épisodes · récents d’abord"
+    }
+    private fun chooseOrder() {
+        AlertDialog.Builder(this).setTitle("Ordre des épisodes")
+            .setSingleChoiceItems(arrayOf("Du plus récent au plus ancien", "Du plus ancien au plus récent"), if (oldestFirst) 1 else 0) { dialog, which ->
+                val selected = which == 1
+                if (selected != oldestFirst) {
+                    oldestFirst = selected
+                    getSharedPreferences("display", MODE_PRIVATE).edit().putBoolean("oldest_first", oldestFirst).apply()
+                    rows = rows.reversed()
+                    anchors.remove(parent)
+                    adapter.notifyDataSetChanged()
+                    list.setSelection(0)
+                    updateHeading()
+                }
+                dialog.dismiss()
+            }.setNegativeButton("Annuler", null).show()
     }
     private fun episodeMenu(item: MediaItem) {
         val completed = history.isCompleted(item.mediaId)
@@ -175,6 +197,7 @@ class MainActivity : Activity() {
                 if (result.resultCode != LibraryResult.RESULT_SUCCESS) { status.text = "Catalogue indisponible. Touchez Émissions et réessayez."; return@onSuccess }
                 rememberScroll()
                 rows = result.value?.toList() ?: emptyList()
+                if (parent != "root" && oldestFirst) rows = rows.reversed()
                 adapter.notifyDataSetChanged()
                 anchors[parent]?.let { anchor ->
                     val index = rows.indexOfFirst { it.mediaId == anchor.id }.takeIf { it >= 0 } ?: anchor.index.coerceIn(0, maxOf(0, rows.lastIndex))
