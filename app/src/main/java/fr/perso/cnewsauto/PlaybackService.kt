@@ -41,9 +41,8 @@ class PlaybackService : MediaLibraryService() {
                 // Progress is saved every five seconds. Do not reset the car's browse
                 // screen on each save; it reads fresh progress on its next visit.
                 for ((controller, parents) in subscribed.toMap()) {
-                    if (!isPhone(controller)) continue
                     for (parent in parents.toList()) {
-                        if (parent == "root" || EpisodeNavigation.showId(parent) == show) {
+                        if (parent == "root" || (parent != "root" && EpisodeNavigation.showId(parent) == show)) {
                             runCatching { repository.children(parent, true) }.onSuccess {
                                 session.notifyChildrenChanged(controller, parent, it.size, null)
                             }
@@ -79,7 +78,12 @@ class PlaybackService : MediaLibraryService() {
                 if (playbackState == Player.STATE_ENDED) player.currentMediaItem?.mediaId?.let { history.setCompleted(it, true) }
                 if (playbackState == Player.STATE_READY) saveCurrentProgress()
             }
-            override fun onIsPlayingChanged(isPlaying: Boolean) { saveCurrentProgress() }
+            private var wasPlaying = false
+            override fun onIsPlayingChanged(isPlaying: Boolean) {
+                if (wasPlaying && !isPlaying) markCompletedNearEnd(player)
+                wasPlaying = isPlaying
+                saveCurrentProgress()
+            }
             override fun onPositionDiscontinuity(oldPosition: Player.PositionInfo, newPosition: Player.PositionInfo, reason: Int) {
                 if (oldPosition.mediaItem?.mediaId != newPosition.mediaItem?.mediaId) {
                     oldPosition.mediaItem?.let { item ->
@@ -114,11 +118,19 @@ class PlaybackService : MediaLibraryService() {
         }
     }
     override fun onGetSession(controllerInfo: MediaSession.ControllerInfo) = session
+    private fun markCompletedNearEnd(player: Player) {
+        val id = player.currentMediaItem?.mediaId ?: return
+        val duration = player.duration
+        if (duration <= 0 || duration == C.TIME_UNSET) return
+        val remaining = duration - player.currentPosition
+        // Only after playback was actually running, not just after a seek.
+        if (player.currentPosition > 0 && remaining in 0..3_000L) history.setCompleted(id, true)
+    }
     private fun saveCurrentProgress() {
         if (!::session.isInitialized) return
         val player = session.player
         val item = player.currentMediaItem ?: return
-        if (player.playbackState == Player.STATE_READY) {
+        if (player.playbackState == Player.STATE_READY && !history.isCompleted(item.mediaId)) {
             history.saveProgress(item.mediaId, player.currentPosition, player.duration)
         }
     }
