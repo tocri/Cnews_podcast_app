@@ -33,32 +33,21 @@ class CatalogRepository(context: Context) {
         val episodes = episodes(show)
         if (phone && parent == show) return episodes.map(::media)
         val mode = EpisodeNavigation.mode(parent)
-        if (mode == "periods") return listOf(
-            folder("$show~periods:desc", "Du plus récent au plus ancien"),
-            folder("$show~periods:asc", "Du plus ancien au plus récent"))
-        if (mode == "periods:desc" || mode == "periods:asc") return (0 until EpisodeNavigation.pageCount(episodes.size)).map { page ->
-            val pageMode = "page:$page" + if (mode.endsWith(":asc")) ":asc" else ""
+        // Keep legacy "periods" bookmarks working, but show periods directly.
+        if (mode == "periods" || mode.isEmpty()) return (0 until EpisodeNavigation.pageCount(episodes.size)).map { page ->
+            val pageMode = "page:$page"
             val indices = EpisodeNavigation.indices(episodes.size, pageMode)
             fun date(index: Int) = SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE).format(Date(episodes[index].date))
             folder("$show~$pageMode", "${date(indices.first())} → ${date(indices.last())}")
         }
-        val shortcuts = if (mode.isEmpty()) listOf(
-            folder("$show~recent", "↑ Début · Plus récents"),
-            folder("$show~oldest", "↓ Fin · Plus anciens"),
-            folder("$show~periods", "Toutes les périodes")) else emptyList()
-        val selected = if (mode.isEmpty()) episodes.filter { history.position(it.id) > 0 }.take(8)
-            else EpisodeNavigation.indices(episodes.size, mode).map { episodes[it] }
-        return shortcuts + selected.map(::media)
+        val selected = EpisodeNavigation.indices(episodes.size, mode).map { episodes[it] }
+        return selected.map(::media)
     }
     fun navigationFolder(id: String): MediaItem? {
         if (!id.contains('~') || shows.none { it.id == EpisodeNavigation.showId(id) }) return null
         val mode = EpisodeNavigation.mode(id)
         val title = when {
-            mode == "recent" -> "Plus récents"
-            mode == "oldest" -> "Plus anciens"
             mode == "periods" -> "Toutes les périodes"
-            mode == "periods:desc" -> "Du plus récent au plus ancien"
-            mode == "periods:asc" -> "Du plus ancien au plus récent"
             mode.startsWith("page:") && mode.removeSuffix(":asc").removePrefix("page:").toIntOrNull() in 0..7 -> "Épisodes par période"
             else -> return null
         }
